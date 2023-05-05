@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Company;
-use Database\Factories\CompanyFactory;
+use App\Models\Post;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,5 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Company::factory(15)->create();
+        Post::factory(20)->create();
     }
 }
