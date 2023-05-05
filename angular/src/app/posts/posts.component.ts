@@ -1,10 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import { GET_POSTS } from '../graphql.operations';
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss']
-})
-export class PostsComponent {
+             selector:    'app-posts',
+             templateUrl: './posts.component.html',
+             styleUrls:   ['./posts.component.scss']
+           })
+export class PostsComponent implements OnInit {
+  posts: any[] = [];
+  error: any;
+
+  constructor(private apollo: Apollo) {
+  }
+
+  ngOnInit(): void {
+    this.apollo.watchQuery({
+                             query: GET_POSTS
+                           }).valueChanges.subscribe(({data, error}: any) => {
+      this.posts = data.posts;
+      this.error = error;
+    });
+  }
 
 }
