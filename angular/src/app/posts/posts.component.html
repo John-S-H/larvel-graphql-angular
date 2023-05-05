@@ -3,14 +3,39 @@
     <p>Error: {{ error }}</p>
   </div>
 
+  <h2>Create post</h2>
+
+  <form (ngSubmit)="createPost(title.value, content.value)">
+    <label>Title:</label>
+    <input type="text" name="title" #title required>
+    <br>
+    <label>Content:</label>
+    <textarea name="content" #content required></textarea>
+    <br>
+    <button type="submit">Create Post</button>
+  </form>
+
+  <h2>All posts</h2>
+
   <div class="posts-container" *ngIf="posts">
     <ul>
       <li *ngFor="let post of posts">
-        <div class="post">
-          <span class="post-title">{{ post.title }}</span>
-          <span class="post-description">{{ post.content }}</span>
-        </div>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+        <button (click)="deletePost(post.id)">Delete</button>
+        <button (click)="selectPost(post)">Edit</button>
       </li>
     </ul>
   </div>
+
+  <form *ngIf="selectedPost" (ngSubmit)="updatePost(selectedPost.id, newTitle.value, newContent.value)">
+    <h2>Edit post {{ selectedPost.title }}</h2>
+    <label>Title:</label>
+    <input type="text" name="newTitle" [(ngModel)]="selectedPost.title" #newTitle required>
+    <br>
+    <label>Content:</label>
+    <textarea name="newContent" [(ngModel)]="selectedPost.content" #newContent required></textarea>
+    <br>
+    <button type="submit">Save Changes</button>
+  </form>
 </div>
