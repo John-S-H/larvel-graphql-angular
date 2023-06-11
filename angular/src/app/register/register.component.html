@@ -1,0 +1,27 @@
+
+
+<div class="main">
+  <div class="container">
+    <h2>User Registration</h2>
+
+    <form (ngSubmit)="registerUser()">
+      <div class="form-group mt-4">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" class="form-control" [(ngModel)]="name" required>
+      </div>
+      <div class="form-group mt-4">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" class="form-control" [(ngModel)]="email" required>
+      </div>
+      <div class="form-group mt-4">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="form-control" [(ngModel)]="password" required>
+      </div>
+      <div class="my-2">
+        <small class="text-muted"><a class="nav-link" routerLink="/login">Already have a account? login</a></small>
+      </div>
+      <button type="submit" class="btn btn-primary mt-2">Register</button>
+    </form>
+
+  </div>
+</div>

@@ -11,6 +11,10 @@ import { ClientsComponent } from './clients/clients.component';
 import { ClientDetailsComponent } from './clients/client-details/client-details.component';
 import { TargetGroupsComponent } from './target-groups/target-groups.component';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,12 @@ import { RouterModule } from '@angular/router';
     PostsComponent,
     ClientsComponent,
     ClientDetailsComponent,
-    TargetGroupsComponent
+    TargetGroupsComponent,
+    LoginComponent,
+    RegisterComponent,
+    LogoutComponent,
+    NavbarComponent,
+
   ],
   imports: [
     BrowserModule,
