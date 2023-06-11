@@ -1,0 +1,22 @@
+type Client {
+    id: ID!
+    first_name: String!
+    last_name: String!
+    email: String!,
+    age: Int!,
+    height: Int!,
+    weight: Int!,
+    company: String!,
+    information: String!
+}
+
+type Query {
+    clients: [Client!]!
+    client(id: ID!): Client!
+}
+
+type Mutation {
+    createClient(firstName: String!, lastName: String!, email: String!, age: Int!, height: Int, weight: Int, company: Int, information: String!): Post!
+    updateClient(id: ID!, title: String, content: String): Post!
+    deleteClient(id: ID!): ID!
+}

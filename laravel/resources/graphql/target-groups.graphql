@@ -1,0 +1,15 @@
+type TargetGroup {
+    id: ID!
+    title: String!
+}
+
+type Query {
+    targetGroups: [TargetGroup!]!
+    targetGroup(id: ID!): TargetGroup!
+}
+
+type Mutation {
+    createTargetGroup(title: String!): TargetGroup!
+    updateTargetGroup(id: ID!, title: String!): TargetGroup!
+    deleteTargetGroup(id: ID!): ID!
+}

@@ -27,6 +27,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->update($request->all());
+
         return $post;
     }
 
@@ -34,6 +35,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->delete();
+
         return response()->json([], 204);
     }
 }
