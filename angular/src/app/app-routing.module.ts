@@ -10,6 +10,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './auth.gaurd';
+import { ChatGptComponent } from './chat-gpt/chat-gpt.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'chat-gpt', component: ChatGptComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
 ];
 

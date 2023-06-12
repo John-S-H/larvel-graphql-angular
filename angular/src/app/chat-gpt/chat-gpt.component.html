@@ -1,0 +1,25 @@
+
+<div class="container">
+
+  <div class="main">
+    <h1>Ask a question</h1>
+
+    <div class="form-group">
+      <label for="chat-gpt">Enter a question:</label>
+      <input type="text" class="form-control" id="chat-gpt" aria-describedby="chat-gpt-help" placeholder="Enter question.." [(ngModel)]="question">
+      <small id="chat-gpt-help" class="form-text text-muted">Chat GPT has the answer.</small>
+    </div>
+
+    <button (click)="submitQuestion()" class="btn btn-primary mt-4">Submit</button>
+
+    <div *ngIf="responseText">
+      <div class="form-group mt-4">
+        <h2>Answer:</h2>
+        <hr>
+        <p>{{ responseText }}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+

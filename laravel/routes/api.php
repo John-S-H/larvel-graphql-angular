@@ -59,3 +59,25 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
 });
 
+
+Route::post('/chat', [\App\Http\Controllers\ChatGptController::class, 'chat']);
+
+Route::get('/chat-gpt', function() {
+    $result = \OpenAI\Laravel\Facades\OpenAI::completions()->create([
+        'model' => 'text-davinci-003',
+        'prompt' => 'PHP is',
+    ]);
+    return response()->json($result['choices']);
+
+});
+
+Route::get('/ask/chat-gpt/{question}', function ($question) {
+    $result = \OpenAI\Laravel\Facades\OpenAI::completions()->create([
+        'model' => 'text-davinci-003',
+        'prompt' => $question,
+        'max_tokens' => 300,
+        'temperature' => 0,
+        'n' => 2,
+    ]);
+    return response()->json($result['choices']);
+});
