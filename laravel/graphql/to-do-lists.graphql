@@ -1,0 +1,15 @@
+type ToDoList {
+    id: ID!
+    title: String!
+}
+
+type Query {
+    toDoLists: [ToDoList!]!
+    toDoLists(id: ID!): ToDoList!
+}
+
+type Mutation {
+    createTodoList(title: String!): ToDoList!
+    updateTodoList(id: ID!, title: String): ToDoList!
+    deleteToDoList(id: ID!): ID!
+}

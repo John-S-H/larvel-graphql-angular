@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TodoListComponent } from './to-do-list/to-do-list.component';
+import { ToDoListDetailsComponent } from './to-do-list-details/to-do-list-details.component';
 import { AuthGuard } from './auth.gaurd';
 
 const routes: Routes = [
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'todo-lists', component: TodoListComponent },
+  { path: 'todo-list/:id', component: ToDoListDetailsComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
 ];
 

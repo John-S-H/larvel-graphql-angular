@@ -4,7 +4,8 @@ return [
     'default' => 'default',
     'schemas' => [
         'default' => [
-            'register' => base_path('graphql/my-schema.graphql'),
+            'register' =>
+                [base_path('graphql/my-schema.graphql')],
             'query' => [
                 // Add your queries here
             ],

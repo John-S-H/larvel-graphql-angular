@@ -14,6 +14,8 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
+import { TodoListComponent } from './to-do-list/to-do-list.component';
+import { ToDoListDetailsComponent } from './to-do-list-details/to-do-list-details.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
@@ -27,7 +29,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     RegisterComponent,
     LogoutComponent,
     NavbarComponent,
-
+    TodoListComponent,
+    ToDoListDetailsComponent,
   ],
   imports: [
     BrowserModule,

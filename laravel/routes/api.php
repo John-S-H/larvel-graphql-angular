@@ -7,6 +7,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\TargetGroupController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TodoListController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,5 +59,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
+    // ToDoList
+    Route::apiResource('todo-lists', TodoListController::class);
+    Route::apiResource('todo-lists.tasks', TaskController::class);
 });
 

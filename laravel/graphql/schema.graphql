@@ -5,12 +5,16 @@ type Query {
     users(name: String @where(operator: "like")): [User!]! @all
     posts: [Post!]! @all
     post(id: ID! @eq): Post @find
-
     clients: [Client!]! @all
     client(id: ID! @eq): Client @find
-
     targetGroups: [TargetGroup!]! @all
     targetGroup(id: ID! @eq): TargetGroup @find
+
+    todoList(id: ID! @eq): TodoList @find
+
+    allTodoLists: [TodoList!]! @all
+    task(id: ID! @eq): Task @find
+    allTasks: [Task!]! @all
 }
 
 type User {
@@ -71,16 +75,48 @@ input ClientInput {
     target_group_id: String!
 }
 
+input TodoListInput {
+    title: String!
+    tasks: [TaskInput!]!
+}
+
+input TaskInput {
+    title: String!
+    description: String!
+}
+
+type TodoList {
+    id: ID!
+    title: String!
+    tasks: [Task!]
+}
+
+type Task {
+    id: ID!
+    title: String!
+    description: String!
+    target_group_id: TodoList!
+}
+
 type Mutation {
+
     createPost(input: PostInput! @spread): Post @create
     updatePost(id: ID! @eq, input: PostInput! @spread): Post @update
     deletePost(id: ID @whereKey): Post @delete
-
     createClient(input: ClientInput! @spread): Client @create
     updateClient(id: ID! @eq, input: ClientInput! @spread): Client @update
     deleteClient(id: ID @whereKey): Client @delete
-
     createTargetGroup(input: TargetGroupInput! @spread): TargetGroup @create
     updateTargetGroup(id: ID! @eq, input: TargetGroupInput! @spread): TargetGroup @update
     deleteTargetGroup(id: ID @whereKey): TargetGroup @delete
+
+#    createTodoList(input: TodoListInput! @spread): TodoList @create
+    createTodoList(input: CreateTodoListInput!): TodoList! @field(resolver: "App\\GraphQL\\Mutations\\CreateTodoListMutation")
+
+    updateTodoList(id: ID!, title: String!): TodoList
+    deleteTodoList(id: ID!): Boolean
+    createTask(todoListId: ID!, title: String!, description: String!): Task!
+
+    updateTask(id: ID!, title: String!, description: String!): Task
+    deleteTask(id: ID!): Boolean
 }
