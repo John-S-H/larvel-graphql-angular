@@ -1,0 +1,67 @@
+<div class="main">
+  <div class="container">
+
+    <div *ngIf="error">
+      <p>Error: {{ error }}</p>
+    </div>
+
+    <button class="btn btn-primary" (click)="showCreateForm = true">Create Condition</button>
+
+    <hr class="my-5">
+
+    <!-- Create Condition section -->
+    <form *ngIf="showCreateForm && !selectedCondition" (ngSubmit)="createCondition(title.value, content.value)">
+      <h2>Create Condition</h2>
+      <div class="mb-5">
+        <!-- Create Condition form -->
+        <!-- form fields -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" placeholder="Enter the title.." #title required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Content</label>
+          <textarea class="form-control" placeholder="Enter the content.." #content required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button class="btn btn-link" (click)="showCreateForm = false">Cancel</button>
+      </div>
+    </form>
+
+    <ng-container *ngIf="!selectedCondition">
+      <!-- All conditions section -->
+      <h2>All conditions</h2>
+      <div class="conditions-container" *ngIf="conditions">
+        <div *ngFor="let condition of conditions">
+          <!-- condition card -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">{{ condition.title }}</h5>
+              <p class="card-text">{{ condition.content }}</p>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button (click)="deleteCondition(condition.id)" class="btn btn-link">Delete</button>
+                <button (click)="selectCondition(condition)" class="btn btn-link">Edit</button>
+                <button routerLink="/condition/{{ condition.id }}" class="btn btn-link">Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Edit condition section -->
+    <form *ngIf="selectedCondition && !showCreateForm" (ngSubmit)="updateCondition(selectedCondition.id, newTitle.value, newDescription.value)">
+      <h2>Edit condition {{ selectedCondition.title }}</h2>
+      <div class="mb-3">
+        <label class="form-label">Title:</label>
+        <input type="text" name="newTitle" class="form-control" [(ngModel)]="selectedCondition.title" #newTitle required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Description:</label>
+        <textarea name="newDescription" class="form-control" [(ngModel)]="selectedCondition.description" #newDescription></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Save condition</button>
+    </form>
+
+  </div>
+</div>

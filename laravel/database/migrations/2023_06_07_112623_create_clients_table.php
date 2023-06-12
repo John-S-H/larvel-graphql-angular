@@ -21,6 +21,13 @@ return new class extends Migration
             $table->integer('weight')->nullable();
             $table->string('company')->nullable();
             $table->text('information')->nullable();
+
+            $table->unsignedBigInteger('target_group_id')->nullable();
+            $table->foreign('target_group_id')->references('id')->on('target_groups');
+
+            $table->unsignedBigInteger('condition_id')->nullable();
+            $table->foreign('condition_id')->references('id')->on('conditions');
+
             $table->timestamps();
         });
     }

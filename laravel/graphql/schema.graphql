@@ -3,6 +3,7 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 type Query {
     user(id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"]), email: String @eq @rules(apply: ["prohibits:id", "required_without:id", "email"])): User @find
     users(name: String @where(operator: "like")): [User!]! @all
+
     posts: [Post!]! @all
     post(id: ID! @eq): Post @find
 
@@ -11,6 +12,9 @@ type Query {
 
     targetGroups: [TargetGroup!]! @all
     targetGroup(id: ID! @eq): TargetGroup @find
+
+    conditions: [Condition!]! @all
+    condition(id: ID! @eq): Condition @find
 }
 
 type User {
@@ -28,6 +32,24 @@ type Post {
     content: String!
     created_at: DateTime!
     updated_at: DateTime!
+}
+
+input PostInput {
+    title: String!
+    content: String!
+}
+
+type Condition {
+    id: ID!
+    title: String!
+    description: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+input ConditionInput {
+    title: String!
+    description: String!
 }
 
 type TargetGroup {
@@ -50,10 +72,7 @@ type Client {
     updated_at: DateTime!
 }
 
-input PostInput {
-    title: String!
-    content: String!
-}
+
 
 input TargetGroupInput {
     title: String!
@@ -75,6 +94,10 @@ type Mutation {
     createPost(input: PostInput! @spread): Post @create
     updatePost(id: ID! @eq, input: PostInput! @spread): Post @update
     deletePost(id: ID @whereKey): Post @delete
+
+    createCondition(input: ConditionInput! @spread): Condition @create
+    updateCondition(id: ID! @eq, input: ConditionInput! @spread): Condition @update
+    deleteCondition(id: ID @whereKey): Condition @delete
 
     createClient(input: ClientInput! @spread): Client @create
     updateClient(id: ID! @eq, input: ClientInput! @spread): Client @update

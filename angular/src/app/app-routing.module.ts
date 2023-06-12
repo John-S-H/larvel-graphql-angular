@@ -11,6 +11,8 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './auth.gaurd';
 import { ChatGptComponent } from './chat-gpt/chat-gpt.component';
+import { ConditionsComponent } from './conditions/conditions.component';
+import { ConditionDetailsComponent } from './conditions/condition-details/condition-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'chat-gpt', component: ChatGptComponent },
+  { path: 'conditions', component: ConditionsComponent },
+  { path: 'condition/:id', component: ConditionDetailsComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
 ];
 

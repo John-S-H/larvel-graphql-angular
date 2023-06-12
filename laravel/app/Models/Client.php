@@ -25,4 +25,9 @@ class Client extends Model
     {
         return $this->belongsTo(TargetGroup::class);
     }
+
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class);
+    }
 }

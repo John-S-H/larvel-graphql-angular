@@ -1,0 +1,16 @@
+type Condition {
+    id: ID!
+    title: String!
+    description: String!
+}
+
+type Query {
+    conditions: [Post!]!
+    condition(id: ID!): Post!
+}
+
+type Mutation {
+    createCondition(title: String!, description: String!): Post!
+    updateCondition(id: ID!, title: String, description: String): Post!
+    deleteCondition(id: ID!): ID!
+}
