@@ -19,8 +19,8 @@ const GET_CLIENTS = gql`
 export { GET_CLIENTS };
 
 export const CREATE_CLIENT = gql`
-    mutation CreateClient($first_name: String!, $last_name: String!, $email: String!, $age: String!, $height: String!, $weight: String!, $company: String!, $information: String!, $target_group_id: String!) {
-        createClient(input: { first_name: $first_name, last_name: $last_name, email: $email, age: $age, height: $height, weight: $weight, company: $company, information: $information, target_group_id: $target_group_id }) {
+    mutation CreateClient($first_name: String!, $last_name: String!, $email: String!, $age: String!, $height: String!, $weight: String!, $company: String!, $information: String!, $target_group_id: String!, $condition_id: String!) {
+        createClient(input: { first_name: $first_name, last_name: $last_name, email: $email, age: $age, height: $height, weight: $weight, company: $company, information: $information, target_group_id: $target_group_id, condition_id: $condition_id }) {
             id
             first_name
             last_name
@@ -31,6 +31,7 @@ export const CREATE_CLIENT = gql`
             company
             information
             target_group_id
+            condition_id
         }
     }
 `;
@@ -47,6 +48,7 @@ export const UPDATE_CLIENT = gql`
         $company: String!, 
         $information: String!
         $target_group_id: String!
+        $condition_id: String!
     ) {
         updateClient(
             id: $id, 
@@ -60,6 +62,7 @@ export const UPDATE_CLIENT = gql`
                 company: $company, 
                 information: $information
                 target_group_id: $target_group_id
+                condition_id: $condition_id
             }) {
             id
             first_name

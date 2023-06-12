@@ -68,11 +68,10 @@ type Client {
     company: String!
     information: String!
     target_group_id: String!
+    condition_id: String!
     created_at: DateTime!
     updated_at: DateTime!
 }
-
-
 
 input TargetGroupInput {
     title: String!
@@ -88,6 +87,7 @@ input ClientInput {
     company: String!
     information: String!
     target_group_id: String!
+    condition_id: String!
 }
 
 type Mutation {

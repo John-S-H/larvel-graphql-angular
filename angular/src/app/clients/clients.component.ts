@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { GET_CLIENTS, CREATE_CLIENT, UPDATE_CLIENT, DELETE_CLIENT } from '../graphql/graphql.clients';
 import { GET_TARGET_GROUPS } from '../graphql/graphql.target-groups';
+import { GET_CONDITIONS } from '../graphql/graphql.conditions';
 
 interface Client {
   id: number,
@@ -34,8 +35,12 @@ export class ClientsComponent implements OnInit {
   error: any;
   selectedClient: any;
   showCreateForm: boolean = false;
+
   targetGroupsOptions: any[]     = [];
   targetGroup: string = '';
+
+  conditionsOptions: any[]     = [];
+  condition: string = '';
 
   constructor(
     private apollo: Apollo,
@@ -55,8 +60,18 @@ export class ClientsComponent implements OnInit {
     });
   }
 
+  loadTargetConditions(): void {
+    this.apollo
+      .watchQuery({query: GET_CONDITIONS})
+      .valueChanges.subscribe(({data, error}: any) => {
+      this.conditionsOptions = data.conditions;
+      console.log('conditions', this.conditionsOptions);
+    });
+  }
+
   ngOnInit(): void {
     this.loadTargetGroups();
+    this.loadTargetConditions();
     this.apollo.watchQuery(
       {
         query: GET_CLIENTS
@@ -67,7 +82,7 @@ export class ClientsComponent implements OnInit {
   }
 
 
-  createClient(first_name: string, last_name: string, email: string, age: string, height: string, weight: string, company: string, information: string, target_group_id: string) {
+  createClient(first_name: string, last_name: string, email: string, age: string, height: string, weight: string, company: string, information: string, target_group_id: string, condition_id: string) {
     this.apollo.mutate<CreateClientMutationData>(
       {
         mutation:  CREATE_CLIENT,
@@ -80,7 +95,8 @@ export class ClientsComponent implements OnInit {
           weight,
           company,
           information,
-          target_group_id
+          target_group_id,
+          condition_id
         },
         update:    (cache, {data}) => {
           const newClient = data?.createClient;
@@ -103,7 +119,8 @@ export class ClientsComponent implements OnInit {
                                 weight,
                                 company,
                                 information,
-                                target_group_id
+                                target_group_id,
+                                condition_id
                             }
                         `
                       });
@@ -116,7 +133,7 @@ export class ClientsComponent implements OnInit {
       }).subscribe();
   }
 
-  updateClient(id: string, first_name: string, last_name: string, email: string, age: string, height: string, weight: string, company: string, information: string, target_group_id: string) {
+  updateClient(id: string, first_name: string, last_name: string, email: string, age: string, height: string, weight: string, company: string, information: string, target_group_id: string, condition_id: string) {
 
     this.apollo.mutate<UpdateClientMutationData>(
       {
@@ -131,7 +148,8 @@ export class ClientsComponent implements OnInit {
           weight,
           company,
           information,
-          target_group_id
+          target_group_id,
+          condition_id
         },
         update:    (cache, {data}) => {
           const updatedClient = data?.updateClient;
