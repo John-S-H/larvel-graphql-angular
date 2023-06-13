@@ -18,6 +18,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ConditionsComponent } from './conditions/conditions.component';
 import { ConditionDetailsComponent } from './conditions/condition-details/condition-details.component';
 import { ChatGptComponent } from './chat-gpt/chat-gpt.component';
+import { GamesComponent } from './games/games.component';
+import { GameDetailsComponent } from './games/game-details/game-details.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { ChatGptComponent } from './chat-gpt/chat-gpt.component';
     NavbarComponent,
     ChatGptComponent,
     ConditionsComponent,
-    ConditionDetailsComponent
+    ConditionDetailsComponent,
+    GamesComponent,
+    GameDetailsComponent
   ],
   imports: [
     BrowserModule,

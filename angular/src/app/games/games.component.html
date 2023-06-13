@@ -1,0 +1,68 @@
+<div class="main">
+  <div class="container">
+
+    <div *ngIf="error">
+      <p>Error: {{ error }}</p>
+    </div>
+
+    <button class="btn btn-primary" (click)="showCreateForm = true">Create Game</button>
+
+    <hr class="my-5">
+
+    <!-- Create Game section -->
+    <form *ngIf="showCreateForm && !selectedGame" (ngSubmit)="createGame(title.value, description.value)">
+      <h2>Create Game</h2>
+      <div class="mb-5">
+        <!-- Create Game form -->
+        <!-- form fields -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" placeholder="Enter the title.." #title required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" placeholder="Enter the description.." #description required></textarea>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button class="btn btn-link" (click)="showCreateForm = false">Cancel</button>
+      </div>
+    </form>
+
+    <ng-container *ngIf="!selectedGame">
+      <!-- All games section -->
+      <h2>All games</h2>
+      <div class="games-container" *ngIf="games">
+        <div *ngFor="let game of games">
+          <!-- game card -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">{{ game.title }}</h5>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button (click)="deleteGame(game.id)" class="btn btn-link">Delete</button>
+                <button (click)="selectGame(game)" class="btn btn-link">Edit</button>
+                <button routerLink="/game/{{ game.id }}" class="btn btn-link">Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Edit Game section -->
+    <form *ngIf="selectedGame && !showCreateForm" (ngSubmit)="updateGame(selectedGame.id, newTitle.value, newDescription.value)">
+      <h2>Edit Game {{ selectedGame.title }}</h2>
+      <div class="mb-3">
+        <label class="form-label">Title:</label>
+        <input type="text" name="newTitle" class="form-control" [(ngModel)]="selectedGame.title" #newTitle required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Description:</label>
+        <textarea name="newDescription" class="form-control" [(ngModel)]="selectedGame.description" #newDescription></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Save game</button>
+    </form>
+
+  </div>
+</div>

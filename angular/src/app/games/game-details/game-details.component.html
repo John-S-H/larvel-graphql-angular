@@ -2,18 +2,18 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <h2>Condition Details</h2>
+        <h2>Game Details</h2>
       </div>
       <div class="col-md-4 text-md-end">
-        <button routerLink="/conditions" class="btn btn-primary">Go Back</button>
+        <button routerLink="/games" class="btn btn-primary">Go Back</button>
       </div>
     </div>
 
-    <div *ngIf="condition">
+    <div *ngIf="game">
       <div class="card mb-4">
         <div class="card-body">
-          <h5 class="card-title">{{ condition.title }}</h5>
-          <p class="card-text">{{ condition.description }}</p>
+          <h5 class="card-title">{{ game.title }}</h5>
+          <p class="card-text">{{ game.description }}</p>
         </div>
       </div>
     </div>

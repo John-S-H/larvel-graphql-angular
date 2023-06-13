@@ -30,4 +30,9 @@ class Client extends Model
     {
         return $this->belongsTo(Condition::class);
     }
+
+    public function games()
+    {
+        return $this->belongsToMany(Game::class, 'client_game');
+    }
 }

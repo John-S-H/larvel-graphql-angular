@@ -13,6 +13,8 @@ import { AuthGuard } from './auth.gaurd';
 import { ChatGptComponent } from './chat-gpt/chat-gpt.component';
 import { ConditionsComponent } from './conditions/conditions.component';
 import { ConditionDetailsComponent } from './conditions/condition-details/condition-details.component';
+import { GamesComponent } from './games/games.component';
+import { GameDetailsComponent } from './games/game-details/game-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -28,6 +30,8 @@ const routes: Routes = [
   { path: 'chat-gpt', component: ChatGptComponent },
   { path: 'conditions', component: ConditionsComponent },
   { path: 'condition/:id', component: ConditionDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'games', component: GamesComponent },
+  { path: 'game/:id', component: GameDetailsComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
 ];
 

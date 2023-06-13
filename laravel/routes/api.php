@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\TargetGroupController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
+    // Games
+    Route::get('/games', [GameController::class, 'index']);
+    Route::post('/games', [GameController::class, 'store']);
+    Route::get('/games/{id}', [GameController::class, 'show']);
+    Route::put('/games/{id}', [GameController::class, 'update']);
+    Route::delete('/games/{id}', [GameController::class, 'destroy']);
 });
 
 

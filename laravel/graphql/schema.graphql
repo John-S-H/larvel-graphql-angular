@@ -15,6 +15,9 @@ type Query {
 
     conditions: [Condition!]! @all
     condition(id: ID! @eq): Condition @find
+
+    games: [Game!]! @all
+    game(id: ID! @eq): Game @find
 }
 
 type User {
@@ -57,6 +60,10 @@ type TargetGroup {
     title: String!
 }
 
+input TargetGroupInput {
+    title: String!
+}
+
 type Client {
     id: ID!
     first_name: String!
@@ -73,10 +80,6 @@ type Client {
     updated_at: DateTime!
 }
 
-input TargetGroupInput {
-    title: String!
-}
-
 input ClientInput {
     first_name: String!
     last_name: String!
@@ -88,6 +91,19 @@ input ClientInput {
     information: String!
     target_group_id: String!
     condition_id: String!
+}
+
+type Game {
+    id: ID!
+    title: String!
+    description: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+input GameInput {
+    title: String!
+    description: String!
 }
 
 type Mutation {
@@ -106,4 +122,8 @@ type Mutation {
     createTargetGroup(input: TargetGroupInput! @spread): TargetGroup @create
     updateTargetGroup(id: ID! @eq, input: TargetGroupInput! @spread): TargetGroup @update
     deleteTargetGroup(id: ID @whereKey): TargetGroup @delete
+
+    createGame(input: GameInput! @spread): Game @create
+    updateGame(id: ID! @eq, input: GameInput! @spread): Game @update
+    deleteGame(id: ID @whereKey): Game @delete
 }

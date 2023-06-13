@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { GET_CONDITIONS } from '../../graphql/graphql.conditions';
-import { GET_CLIENTS } from '../../graphql/graphql.clients';
 
 interface Condition {
   id: number;
@@ -30,7 +29,6 @@ export class ConditionDetailsComponent {
       const conditionId = params.get('id');
       if (conditionId) {
         this.fetchConditionDetails(parseInt(conditionId));
-        console.log('id', conditionId);
       }
       else {
         console.log('no id found');
@@ -44,8 +42,6 @@ export class ConditionDetailsComponent {
         query: GET_CONDITIONS
       }).valueChanges.subscribe(({data}) => {
       const conditions = data.conditions;
-      console.log('data', conditions);
-      console.log('condition/id', conditionId);
       this.condition = conditions.find(condition => condition.id == conditionId);
     }, error => {
       this.condition = null;
