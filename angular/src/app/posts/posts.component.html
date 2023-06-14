@@ -5,32 +5,32 @@
       <p>Error: {{ error }}</p>
     </div>
 
-    <button class="btn btn-primary" (click)="showCreateForm = true">Create Post</button>
+    <button class="btn btn-success" (click)="showCreateForm = true">Aanmaken</button>
 
     <hr class="my-5">
 
     <!-- Create post section -->
     <form *ngIf="showCreateForm && !selectedPost" (ngSubmit)="createPost(title.value, content.value)">
-      <h2>Create post</h2>
+      <h2>Maak bericht aan</h2>
       <div class="mb-5">
         <!-- Create post form -->
         <!-- form fields -->
         <div class="mb-3">
-          <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control" id="title" placeholder="Enter the title.." #title required>
+          <label for="title" class="form-label">Titel</label>
+          <input type="text" class="form-control" id="title" placeholder="Vul een titel in.." #title required>
         </div>
         <div class="mb-3">
-          <label class="form-label">Content</label>
-          <textarea class="form-control" placeholder="Enter the content.." #content required></textarea>
+          <label class="form-label">Omschrijving</label>
+          <textarea class="form-control" placeholder="Vul een omschrijving in.." #content required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button class="btn btn-link" (click)="showCreateForm = false">Cancel</button>
+        <button type="submit" class="btn btn-primary">Opslaan</button>
+        <button class="btn btn-link" (click)="showCreateForm = false">Annuleren</button>
       </div>
     </form>
 
     <ng-container *ngIf="!selectedPost">
       <!-- All posts section -->
-      <h2>All posts</h2>
+      <h2>All berichten</h2>
       <div class="posts-container" *ngIf="posts">
         <div *ngFor="let post of posts">
           <!-- post card -->
@@ -39,8 +39,8 @@
               <h5 class="card-title">{{ post.title }}</h5>
               <p class="card-text">{{ post.content }}</p>
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button (click)="deletePost(post.id)" class="btn btn-link">Delete</button>
-                <button (click)="selectPost(post)" class="btn btn-link">Edit</button>
+                <button (click)="deletePost(post.id)" class="btn btn-link">Verwijderen</button>
+                <button (click)="selectPost(post)" class="btn btn-link">Aanpassen</button>
               </div>
             </div>
           </div>
@@ -52,14 +52,14 @@
     <form *ngIf="selectedPost && !showCreateForm" (ngSubmit)="updatePost(selectedPost.id, newTitle.value, newContent.value)">
       <h2>Edit post {{ selectedPost.title }}</h2>
       <div class="mb-3">
-        <label class="form-label">Title:</label>
+        <label class="form-label">Titel:</label>
         <input type="text" name="newTitle" class="form-control" [(ngModel)]="selectedPost.title" #newTitle required>
       </div>
       <div class="mb-3">
-        <label class="form-label">Content:</label>
+        <label class="form-label">Omschrijving:</label>
         <textarea name="newContent" class="form-control" [(ngModel)]="selectedPost.content" #newContent required></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Save post</button>
+      <button type="submit" class="btn btn-primary">Opslaan</button>
     </form>
 
   </div>

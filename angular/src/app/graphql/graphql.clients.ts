@@ -77,6 +77,26 @@ export const UPDATE_CLIENT = gql`
     }
 `;
 
+export const GET_TARGET_GROUP_NAME = gql`
+    query GetTargetGroupName($clientId: ID!) {
+        client(id: $clientId) {
+            targetGroup {
+                title
+            }
+        }
+    }
+`;
+
+export const GET_CONDITION_NAME = gql`
+    query GetConditionName($clientId: ID!) {
+        client(id: $clientId) {
+            condition {
+                title
+            }
+        }
+    }
+`;
+
 export const DELETE_CLIENT = gql`
     mutation DeleteClient($id: ID!) {
         deleteClient(id: $id) {

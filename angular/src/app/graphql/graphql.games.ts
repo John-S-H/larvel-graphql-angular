@@ -16,16 +16,6 @@ const GET_GAMES = gql`
 
 export { GET_GAMES };
 
-// export const CREATE_GAME = gql`
-//     mutation CreateGame($title: String!, $description: String!) {
-//         createGame(input: { title: $title, description: $description }) {
-//             id
-//             title
-//             description
-//         }
-//     }
-// `;
-
 export const CREATE_GAME = gql`
     mutation CreateGame($title: String!, $description: String!) {
         createGame(input: { title: $title, description: $description }) {

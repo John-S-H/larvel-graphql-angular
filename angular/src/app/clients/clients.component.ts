@@ -202,5 +202,6 @@ export class ClientsComponent implements OnInit {
 
   selectClient(client: any) {
     this.selectedClient = {...client};
+    console.log('client', this.selectedClient);
   }
 }

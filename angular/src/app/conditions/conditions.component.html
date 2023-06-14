@@ -5,7 +5,7 @@
       <p>Error: {{ error }}</p>
     </div>
 
-    <button class="btn btn-primary" (click)="showCreateForm = true">Create Condition</button>
+    <button class="btn btn-success" (click)="showCreateForm = true">Aanmaken</button>
 
     <hr class="my-5">
 
@@ -16,21 +16,21 @@
         <!-- Create Condition form -->
         <!-- form fields -->
         <div class="mb-3">
-          <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control" id="title" placeholder="Enter the title.." #title required>
+          <label for="title" class="form-label">Titel</label>
+          <input type="text" class="form-control" id="title" placeholder="Voer de titel in.." #title required>
         </div>
         <div class="mb-3">
-          <label class="form-label">Content</label>
-          <textarea class="form-control" placeholder="Enter the content.." #content required></textarea>
+          <label class="form-label">Omschrijving</label>
+          <textarea class="form-control" placeholder="Voer een beschrijving in.." #content required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button class="btn btn-link" (click)="showCreateForm = false">Cancel</button>
+        <button type="submit" class="btn btn-primary">Opslaan</button>
+        <button class="btn btn-link" (click)="showCreateForm = false">Annuleren</button>
       </div>
     </form>
 
     <ng-container *ngIf="!selectedCondition">
       <!-- All conditions section -->
-      <h2>All conditions</h2>
+      <h2>Alle aandoeningen</h2>
       <div class="conditions-container" *ngIf="conditions">
         <div *ngFor="let condition of conditions">
           <!-- condition card -->
@@ -39,8 +39,8 @@
               <h5 class="card-title">{{ condition.title }}</h5>
               <p class="card-text">{{ condition.content }}</p>
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button (click)="deleteCondition(condition.id)" class="btn btn-link">Delete</button>
-                <button (click)="selectCondition(condition)" class="btn btn-link">Edit</button>
+                <button (click)="deleteCondition(condition.id)" class="btn btn-link">Verwijderen</button>
+                <button (click)="selectCondition(condition)" class="btn btn-link">Aanpassen</button>
                 <button routerLink="/condition/{{ condition.id }}" class="btn btn-link">Details</button>
               </div>
             </div>
@@ -53,14 +53,14 @@
     <form *ngIf="selectedCondition && !showCreateForm" (ngSubmit)="updateCondition(selectedCondition.id, newTitle.value, newDescription.value)">
       <h2>Edit condition {{ selectedCondition.title }}</h2>
       <div class="mb-3">
-        <label class="form-label">Title:</label>
+        <label class="form-label">Titel:</label>
         <input type="text" name="newTitle" class="form-control" [(ngModel)]="selectedCondition.title" #newTitle required>
       </div>
       <div class="mb-3">
-        <label class="form-label">Description:</label>
+        <label class="form-label">Omschrijving:</label>
         <textarea name="newDescription" class="form-control" [(ngModel)]="selectedCondition.description" #newDescription></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Save condition</button>
+      <button type="submit" class="btn btn-primary">Opslaan</button>
     </form>
 
   </div>

@@ -78,6 +78,8 @@ type Client {
     condition_id: String!
     created_at: DateTime!
     updated_at: DateTime!
+    targetGroup: TargetGroup
+    condition: Condition
 }
 
 input ClientInput {

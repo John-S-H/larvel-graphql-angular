@@ -17,9 +17,6 @@ export class ChatGptComponent {
 
     this.http.get(apiUrl).subscribe((response: any) => {
       this.responseText = response[0].text;
-
-      console.log('anwtoord', this.responseText);
-      console.log('anwtoord', response[0]);
     });
   }
 }

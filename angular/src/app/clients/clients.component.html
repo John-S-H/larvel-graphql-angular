@@ -6,77 +6,75 @@
       <p>Error: {{ error }}</p>
     </div>
 
-    <button class="btn btn-primary" (click)="showCreateForm = true">Create Client</button>
+    <button class="btn btn-success" (click)="showCreateForm = true">Aanmaken</button>
 
     <hr class="my-5">
 
     <form *ngIf="showCreateForm" (ngSubmit)="createClient(first_name.value, last_name.value, email.value, age.value, height.value, weight.value, company.value, information.value, targetGroup, condition)">
 
-
-
     <h2>Create Client</h2>
       <div class="row mb-3">
         <div class="col">
-          <label for="first_name" class="form-label">First name</label>
-          <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter the first name.." #first_name required>
+          <label for="first_name" class="form-label">Voornaam</label>
+          <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Voer voornaam in.." #first_name required>
         </div>
 
         <div class="col">
-          <label for="last_name" class="form-label">Last name</label>
-          <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter the last name.." #last_name required>
+          <label for="last_name" class="form-label">Achternaam</label>
+          <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Voer achternaam in.." #last_name required>
         </div>
       </div>
 
       <div class="row mb-3">
         <div class="col">
           <label for="email" class="form-label">Email</label>
-          <input type="text" class="form-control" id="email" name="email" placeholder="Enter email.." #email>
+          <input type="text" class="form-control" id="email" name="email" placeholder="Voer email in.." #email>
         </div>
 
         <div class="col">
-          <label for="age" class="form-label">Age</label>
-          <input type="text" class="form-control" id="age" name="age" placeholder="Enter age.." #age>
+          <label for="age" class="form-label">Leeftijd</label>
+          <input type="text" class="form-control" id="age" name="age" placeholder="Voer leeftijd in.." #age>
         </div>
       </div>
 
       <div class="row mb-3">
         <div class="col">
-          <label for="height" class="form-label">Height</label>
-          <input type="text" class="form-control" id="height" name="height" placeholder="Enter height.." #height>
+          <label for="height" class="form-label">Lengte</label>
+          <input type="text" class="form-control" id="height" name="height" placeholder="Voer lengte in.." #height>
         </div>
 
         <div class="col">
-          <label for="weight" class="form-label">Weight</label>
-          <input type="text" class="form-control" id="weight" name="weight" placeholder="Enter weight.." #weight>
+          <label for="weight" class="form-label">Gewicht</label>
+          <input type="text" class="form-control" id="weight" name="weight" placeholder="Voer gewicht in.." #weight>
         </div>
       </div>
 
       <div class="mb-3">
-        <label for="company" class="form-label">Company</label>
-        <input type="text" class="form-control" id="company" name="company" placeholder="Enter company.." #company>
+        <label for="company" class="form-label">Bedrijf</label>
+        <input type="text" class="form-control" id="company" name="company" placeholder="Voer bedrijf in.." #company>
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Information</label>
-        <textarea class="form-control" placeholder="Enter the information.." name="information" id="information" #information></textarea>
+        <label class="form-label">Informatie</label>
+        <textarea class="form-control" placeholder="Voer informatie in.." name="information" id="information" #information></textarea>
       </div>
 
       <div class="mb-3">
-        <label for="target_group_id" class="form-label">Target Groups</label>
-        <select [(ngModel)]="targetGroup" name="target_group_id" id="target_group_id"  #target_group>
+        <label for="target_group_id" class="form-label">Doelgroep</label>
+        <select class="form-select"  [(ngModel)]="targetGroup" name="target_group_id" id="target_group_id"  #target_group>
           <option *ngFor="let group of targetGroupsOptions" [value]="group.id">{{ group.title }}</option>
         </select>
       </div>
 
       <div class="mb-3">
-        <label for="target_group_id" class="form-label">Condition</label>
-        <select [(ngModel)]="condition" name="condition_id" id="condition_id"  #target_group>
+        <label for="target_group_id" class="form-label">Aandoening</label>
+        <select class="form-select" [(ngModel)]="condition" name="condition_id" id="condition_id"  #target_group>
           <option *ngFor="let condition of conditionsOptions" [value]="condition.id">{{ condition.title }}</option>
         </select>
       </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <button class="btn btn-link" (click)="showCreateForm = false">Cancel</button>
+      <button type="submit" class="btn btn-primary">Opslaan</button>
+      <button class="btn btn-link" (click)="showCreateForm = false">Annuleren</button>
 
     </form>
 
@@ -86,14 +84,14 @@
       <div class="row mb-3">
         <div class="col">
           <div class="mb-3">
-            <label class="form-label">First name:</label>
+            <label class="form-label">Voornaam:</label>
             <input type="text" name="first_name" class="form-control" [(ngModel)]="selectedClient.first_name" #first_name required>
           </div>
         </div>
 
         <div class="col">
           <div class="mb-3">
-            <label class="form-label">Last name:</label>
+            <label class="form-label">Achternaam:</label>
             <input type="text" name="last_name" class="form-control" [(ngModel)]="selectedClient.last_name" #last_name required>
           </div>
         </div>
@@ -109,7 +107,7 @@
 
         <div class="col">
           <div class="mb-3">
-            <label class="form-label">Age:</label>
+            <label class="form-label">Leeftijd:</label>
             <input type="text" name="age" class="form-control" [(ngModel)]="selectedClient.age" #age>
           </div>
         </div>
@@ -118,21 +116,21 @@
       <div class="row mb-3">
         <div class="col">
           <div class="mb-3">
-            <label class="form-label">Height:</label>
+            <label class="form-label">Lengte:</label>
             <input type="text" name="height" class="form-control" [(ngModel)]="selectedClient.height" #height>
           </div>
         </div>
 
         <div class="col">
           <div class="mb-3">
-            <label class="form-label">Weight:</label>
+            <label class="form-label">Gewicht:</label>
             <input type="text" name="weight" class="form-control" [(ngModel)]="selectedClient.weight" #weight>
           </div>
         </div>
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Company:</label>
+        <label class="form-label">Bedrijf:</label>
         <input type="text" name="company" class="form-control" [(ngModel)]="selectedClient.company" #company>
       </div>
 
@@ -142,25 +140,25 @@
       </div>
 
       <div class="mb-3">
-        <label for="target_group_id" class="form-label">Target Groups</label>
-        <select [(ngModel)]="targetGroup" name="target_group_id">
+        <label for="target_group_id" class="form-label">Doelgroep</label>
+        <select class="form-select"  [(ngModel)]="targetGroup" name="target_group_id">
           <option *ngFor="let targetGroup of targetGroupsOptions" [value]="targetGroup.id">{{ targetGroup.title }}</option>
         </select>
       </div>
 
       <div class="mb-3">
-        <label for="condition_id" class="form-label">Condition</label>
-        <select [(ngModel)]="condition" name="condition_id">
+        <label for="condition_id" class="form-label">Aandoening</label>
+        <select class="form-select"  [(ngModel)]="condition" name="condition_id">
           <option *ngFor="let condition of conditionsOptions" [value]="condition.id">{{ condition.title }}</option>
         </select>
       </div>
 
-      <button type="submit" class="btn btn-primary">Save post</button>
+      <button type="submit" class="btn btn-primary">Opslaan</button>
     </form>
 
 
     <ng-container *ngIf="!selectedClient">
-    <h2>All Clients</h2>
+    <h2>Alle cliënten</h2>
 
     <div class="posts-container" *ngIf="clients">
       <div *ngFor="let client of clients">
@@ -168,15 +166,10 @@
           <div class="card-body">
             <h5 class="card-title">{{ client.first_name }} {{ client.last_name }}</h5>
             <p class="card-text">Email: {{ client.email }}</p>
-            <p class="card-text">Age: {{ client.age }}</p>
-            <p class="card-text">Height: {{ client.height }}</p>
-            <p class="card-text">Weight: {{ client.weight }}</p>
-            <p class="card-text">Company: {{ client.company }}</p>
-            <p class="card-text">Information: {{ client.information }}</p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
               <button routerLink="/client/{{ client.id }}" class="btn btn-link">Details</button>
-              <button (click)="deleteClient(client.id)" class="btn btn-link">Delete</button>
-              <button (click)="selectClient(client)" class="btn btn-link">Edit</button>
+              <button (click)="deleteClient(client.id)" class="btn btn-link">Verwijderen</button>
+              <button (click)="selectClient(client)" class="btn btn-link">Aanpassen</button>
             </div>
           </div>
         </div>
